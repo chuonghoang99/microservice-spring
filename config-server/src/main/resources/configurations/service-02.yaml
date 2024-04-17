@@ -1,0 +1,16 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: service-02
+  config:
+    import: optional:configserver:http://localhost:8888
+
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+

@@ -1,0 +1,32 @@
+server:
+  port: 8222
+
+spring:
+
+  application:
+    name: service-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service01_route
+          uri: ${SERVICE01_URL:http:localhost:8081}
+          predicates:
+            - Path:/service-01/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=XPower-By,ChuongHoang,X01 Gateway Service
+        - id: service02_route
+          uri: ${SERVICE02_URL:http:localhost:8082}
+          predicates:
+            - Path:/service-02/**
+          filters:
+            - PrefixPath=/api
+            - AddResponseHeader=XPower-By,ChuongHoang,X02 Gateway Service
+eureka:
+  client:
+    register-with-eureka: false
