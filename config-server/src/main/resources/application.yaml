@@ -10,8 +10,9 @@ spring:
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/configurations
+        git:
+          uri:
+          - https://github.com/chuonghoang99/microservice-spring/tree/main/config-server/src/main/resources/config
 
 
 
