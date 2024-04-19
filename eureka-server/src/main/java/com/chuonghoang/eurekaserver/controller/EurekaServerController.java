@@ -14,6 +14,6 @@ public class EurekaServerController {
 
     @GetMapping
     public String printKey() {
-        return "Service-2" + tradeKey;
+        return "Service-2 " + tradeKey;
     }
 }
